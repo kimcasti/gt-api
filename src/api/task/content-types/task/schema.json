@@ -1,0 +1,53 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tasks",
+  "info": {
+    "singularName": "task",
+    "pluralName": "tasks",
+    "displayName": "Task",
+    "description": "Task management content type"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "maxLength": 255
+    },
+    "description": {
+      "type": "text"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["Por hacer", "En progreso", "Bloqueada", "Completada"],
+      "default": "Por hacer",
+      "required": true
+    },
+    "priority": {
+      "type": "enumeration",
+      "enum": ["Baja", "Media", "Alta", "Crítica"],
+      "default": "Media",
+      "required": true
+    },
+    "assignedToName": {
+      "type": "string",
+      "maxLength": 255
+    },
+    "assignedToInitials": {
+      "type": "string",
+      "maxLength": 10
+    },
+    "dueDate": {
+      "type": "date"
+    },
+    "project": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::project.project",
+      "inversedBy": "tasks"
+    }
+  }
+}

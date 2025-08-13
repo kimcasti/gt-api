@@ -1,0 +1,60 @@
+{
+  "kind": "collectionType",
+  "collectionName": "projects",
+  "info": {
+    "singularName": "project",
+    "pluralName": "projects",
+    "displayName": "Project",
+    "description": "Project management content type"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "maxLength": 255
+    },
+    "description": {
+      "type": "text"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["Activo", "Pausado", "Completado", "Cancelado"],
+      "default": "Activo",
+      "required": true
+    },
+    "progress": {
+      "type": "integer",
+      "min": 0,
+      "max": 100,
+      "default": 0
+    },
+    "totalTasks": {
+      "type": "integer",
+      "min": 0,
+      "default": 0
+    },
+    "completedTasks": {
+      "type": "integer",
+      "min": 0,
+      "default": 0
+    },
+    "teamMembers": {
+      "type": "integer",
+      "min": 0,
+      "default": 0
+    },
+    "dueDate": {
+      "type": "date"
+    },
+    "tasks": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::task.task",
+      "mappedBy": "project"
+    }
+  }
+}
